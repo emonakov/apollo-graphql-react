@@ -1,4 +1,5 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
@@ -9,10 +10,14 @@ import Navigation from './components/Navigation';
 import List from './components/List';
 import ResetForm from './components/ResetForm';
 
+import { selectLoggedIn, logIn } from './store/slice';
 import { materialTheme } from './config/theme';
 
 const App: FC = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const dispatch = useDispatch();
+  const loggedIn = useSelector(selectLoggedIn);
+  const setLoggedIn = (isLoggedIn: boolean) =>
+    dispatch(logIn({ loggedIn: isLoggedIn }));
 
   return (
     <ThemeProvider theme={materialTheme}>
