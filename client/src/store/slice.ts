@@ -16,6 +16,7 @@ export const slice = createSlice({
     failure: (state: any, action: any) => {
       state.error = action.payload.error;
       state.loading = false;
+      state.loading = true;
     },
     request: (state: any) => {
       state.loading = true;
