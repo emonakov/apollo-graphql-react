@@ -1,9 +1,9 @@
 import { FC, useState } from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 
-import { materialTheme } from './config/theme'
+import { materialTheme } from './config/theme';
 
 const App: FC = () => {
   const [loggedIn] = useState(false);
@@ -19,19 +19,22 @@ const App: FC = () => {
             <Route path="/login" exact>
               <h1>Login</h1>
             </Route>
-            <Route path='/signup' exact>
+            <Route path="/signup" exact>
               <h1>sign up</h1>
             </Route>
             {loggedIn && (
-              <Route path='/profile' exact>
+              <Route path="/profile" exact>
                 <h1>Profile</h1>
               </Route>
             )}
+            <Route>
+              <h1>Not found</h1>
+            </Route>
           </Switch>
         </Router>
       </Container>
     </ThemeProvider>
   );
-}
+};
 
 export default App;
