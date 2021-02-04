@@ -3,30 +3,35 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 
+import LoginFrom from './components/LoginForm';
+import SignUpForm from './components/SignUpForm';
+import Navigation from './components/Navigation';
+import List from './components/List';
+
 import { materialTheme } from './config/theme';
 
 const App: FC = () => {
-  const [loggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
     <ThemeProvider theme={materialTheme}>
       <Container>
         <Router>
+          <Navigation loggedIn={loggedIn} onLogout={() => setLoggedIn(false)} />
           <Switch>
             <Route path="/" exact>
-              <h1>main page</h1>
-            </Route>
-            <Route path="/login" exact>
-              <h1>Login</h1>
+              {!loggedIn ? (
+                <LoginFrom onLogin={() => setLoggedIn(true)} />
+              ) : (
+                <List />
+              )}
             </Route>
             <Route path="/signup" exact>
-              <h1>sign up</h1>
+              <SignUpForm onSignUp={() => setLoggedIn(true)} />
             </Route>
-            {loggedIn && (
-              <Route path="/profile" exact>
-                <h1>Profile</h1>
-              </Route>
-            )}
+            <Route path="/reset" exact>
+              <h1>Reset password</h1>
+            </Route>
             <Route>
               <h1>Not found</h1>
             </Route>

@@ -21,7 +21,7 @@ module.exports = {
     '@typescript-eslint/member-delimiter-style': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
-    'no-console': ['error', { allow: ['warn', 'error', 'info'] }],
+    'no-console': ['warn'],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'off',
     'prettier/prettier': 'warn',

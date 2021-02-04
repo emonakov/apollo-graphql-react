@@ -9,4 +9,5 @@ export const colors = {
   darkBorder: '#000',
   buttonColor: '#768954',
   buttonActiveColor: '#6B7A4F',
+  white: '#fff',
 };

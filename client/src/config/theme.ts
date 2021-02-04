@@ -11,31 +11,23 @@ const theme = {
   paddingMd: '15px',
   menuBorderHeight: '10px',
   menuBorderStyle: '1px solid',
-  frameBackground: colors.frameBackground,
-  textColor: colors.textColor,
-  frameBorderColor: colors.frameBorderColor,
-  linkHoverColor: colors.linkHoverColor,
-  frameBorderHoverColor: colors.frameBorderHoverColor,
-  menuBorderColor: colors.menuBorderColor,
-  darkBorderColor: colors.darkBorder,
   galleryThumbWidth: '140px',
-  buttonColor: colors.buttonColor,
-  wrapperBackground: colors.wrapperBackground,
+  colors,
 };
 
 export const materialTheme = createMuiTheme({
   palette: {
     primary: {
-      main: colors.wrapperBackground,
+      main: colors.textColor,
     },
     secondary: {
-      main: colors.frameBackground,
+      main: colors.linkHoverColor,
     },
     error: {
       main: red.A400,
     },
     background: {
-      default: colors.menuBorderColor,
+      default: colors.wrapperBackground,
     },
   },
 });
