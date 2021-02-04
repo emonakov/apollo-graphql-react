@@ -33,6 +33,7 @@ const SignUpForm: FC<SignUpForm> = ({ onSignUp }) => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      <h1>Sign up</h1>
       <TextField name="user" inputRef={register} variant="outlined" />
       <TextField
         type="password"

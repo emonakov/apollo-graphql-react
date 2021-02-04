@@ -29,7 +29,7 @@ const Navigation: FC<NavigationProps> = ({ loggedIn, onLogout }) => {
       {loggedIn && (
         <GridList cellHeight={40} cols={8}>
           <Button to="/" exact component={NavLink}>
-            Profile
+            List
           </Button>
           <Button onClick={onLogout}>Log out</Button>
         </GridList>

@@ -25,6 +25,7 @@ const LoginForm: FC<LoginFormProps> = ({ onLogin }) => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      <h1>Login</h1>
       <TextField name="user" inputRef={register} variant="outlined" />
       <TextField
         type="password"

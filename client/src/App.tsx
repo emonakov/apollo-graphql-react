@@ -7,6 +7,7 @@ import LoginFrom from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
 import Navigation from './components/Navigation';
 import List from './components/List';
+import ResetForm from './components/ResetForm';
 
 import { materialTheme } from './config/theme';
 
@@ -30,7 +31,7 @@ const App: FC = () => {
               <SignUpForm onSignUp={() => setLoggedIn(true)} />
             </Route>
             <Route path="/reset" exact>
-              <h1>Reset password</h1>
+              <ResetForm onReset={() => setLoggedIn(false)} />
             </Route>
             <Route>
               <h1>Not found</h1>

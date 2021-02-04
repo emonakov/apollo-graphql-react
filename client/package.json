@@ -34,11 +34,6 @@
     "codegen": "apollo client:codegen --target typescript --watch",
     "prettier": "prettier --write '**/*.{ts,tsx}'"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn prettier"
-    }
-  },
   "browserslist": {
     "production": [
       ">0.2%",
