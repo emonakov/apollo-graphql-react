@@ -1,0 +1,13 @@
+out
+node_modules
+.next
+.fakeAPI
+next.config.js
+.eslintrc.js
+postcss.config.js
+jest.config.js
+jest.coverage.ignore.js
+__mocks__/fileMock.js
+scripts/fetchTranslations.js
+server.js
+__mocks__
