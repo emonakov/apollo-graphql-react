@@ -3,6 +3,11 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and uses apollo graphql client.<br />
 Server side is built with apollo graphql
 
+## Installation
+
+```cd client && yarn```
+```cd server && yarn```
+
 ## Available Scripts
 
 In the project directory, you can run:
