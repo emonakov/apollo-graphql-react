@@ -26,8 +26,10 @@ class UserAPI extends DataSource {
   async findUserByPassword({ userName, password } = {}) {
     if (!userName || !password) return null;
     const user = await this.store.users.findOne({ where: { userName } });
+    if (!user) {
+      return null;
+    }
     const isSamePassword = await compare(user.password, password);
-    console.log(isSamePassword);
     if (isSamePassword) {
       return user;
     }
@@ -38,7 +40,6 @@ class UserAPI extends DataSource {
   async createUser({ userName, password } = {}) {
     if (!userName || !password) return null;
     const passwordHash = await toHash(password);
-    console.log(passwordHash);
     const user = await this.store.users.create({
       userName,
       password: passwordHash,
