@@ -39,8 +39,12 @@ class UserAPI extends DataSource {
 
   async createUser({ userName, password } = {}) {
     if (!userName || !password) return null;
+    let user = await this.store.users.findOne({ where: { userName } });
+    if (user) {
+      return null;
+    }
     const passwordHash = await toHash(password);
-    const user = await this.store.users.create({
+    user = await this.store.users.create({
       userName,
       password: passwordHash,
     });
@@ -56,8 +60,9 @@ class UserAPI extends DataSource {
     });
 
     if (user) {
-      user.password = passwordHash;
-      await user.save();
+      await user.update({
+        password: passwordHash,
+      });
 
       return user;
     }
