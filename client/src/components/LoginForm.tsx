@@ -3,12 +3,14 @@ import { NavLink } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 import Form from './shared/Form';
 import * as LoginTypes from '../__generated__/Login';
 
 interface LoginFormProps {
   onLogin: (a: { variables: LoginTypes.LoginVariables }) => void;
+  error: any;
 }
 
 type FormData = {
@@ -16,7 +18,7 @@ type FormData = {
   password: string;
 };
 
-const LoginForm: FC<LoginFormProps> = ({ onLogin }) => {
+const LoginForm: FC<LoginFormProps> = ({ onLogin, error }) => {
   const {
     register,
     handleSubmit,
@@ -39,6 +41,7 @@ const LoginForm: FC<LoginFormProps> = ({ onLogin }) => {
         inputRef={register}
         variant="outlined"
       />
+      {error && <FormHelperText>Login failed</FormHelperText>}
       <Button to="/reset" exact component={NavLink}>
         Reset password
       </Button>

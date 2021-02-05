@@ -3,14 +3,22 @@ import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 import Form from './shared/Form';
+import { SignupVariables } from '../__generated__/Signup';
 
 interface SignUpForm {
-  onSignUp: () => void;
+  onSignUp: (a: { variables: SignupVariables }) => void;
+  error: any;
 }
 
-const SignUpForm: FC<SignUpForm> = ({ onSignUp }) => {
+type FormData = {
+  user: string;
+  password: string;
+};
+
+const SignUpForm: FC<SignUpForm> = ({ onSignUp, error }) => {
   const {
     register,
     handleSubmit,
@@ -21,12 +29,12 @@ const SignUpForm: FC<SignUpForm> = ({ onSignUp }) => {
 
   const history = useHistory();
 
-  const onSubmit = () => {
-    onSignUp();
+  const onSubmit = async ({ user, password }: FormData) => {
+    await onSignUp({ variables: { userName: user, password } });
   };
 
   useEffect(() => {
-    if (isSubmitSuccessful) {
+    if (isSubmitSuccessful && !error) {
       history.push('/');
     }
   }, [isSubmitSuccessful]);
@@ -41,6 +49,7 @@ const SignUpForm: FC<SignUpForm> = ({ onSignUp }) => {
         inputRef={register}
         variant="outlined"
       />
+      {error && <FormHelperText>Signup failed</FormHelperText>}
       <Button disabled={!isDirty || isSubmitting} type="submit">
         Sign Up
       </Button>
