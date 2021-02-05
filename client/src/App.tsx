@@ -24,7 +24,7 @@ const IS_LOGGED_IN = gql`
   }
 `;
 
-export const LOGIN_USER = gql`
+const LOGIN_USER = gql`
   mutation Login($userName: String!, $password: String!) {
     login(userName: $userName, password: $password) {
       success
@@ -34,7 +34,7 @@ export const LOGIN_USER = gql`
   }
 `;
 
-export const SIGNUP_USER = gql`
+const SIGNUP_USER = gql`
   mutation Signup($userName: String!, $password: String!) {
     signUp(userName: $userName, password: $password) {
       success
@@ -44,7 +44,7 @@ export const SIGNUP_USER = gql`
   }
 `;
 
-export const RESET_USER = gql`
+const RESET_USER = gql`
   mutation ResetPassword($userName: String!, $password: String!) {
     resetPassword(userName: $userName, password: $password) {
       success
@@ -88,7 +88,7 @@ const App: FC = () => {
   const [resetPassword, { error: resetError }] = useMutation<
     ResetTypes.ResetPassword,
     ResetTypes.ResetPasswordVariables
-  >(SIGNUP_USER, {
+  >(RESET_USER, {
     errorPolicy: 'all',
   });
 

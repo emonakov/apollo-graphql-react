@@ -9,7 +9,7 @@ const Nav = styled.nav`
 `;
 
 interface NavigationProps {
-  loggedIn: boolean;
+  loggedIn?: boolean;
   onLogout: () => void;
 }
 

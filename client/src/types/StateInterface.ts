@@ -1,8 +1,9 @@
-import { ErrorInterface } from './ErrorInterface';
-
+export interface ItemInterface {
+  id: number;
+  title: string;
+  createdAt: string;
+}
 export interface StateInterface {
-  loading?: boolean;
-  error?: ErrorInterface;
-  items?: string[];
-  loggedIn: boolean;
+  items?: ItemInterface[];
+  loggedIn?: boolean;
 }
