@@ -5,22 +5,28 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
 import Form from './shared/Form';
+import * as LoginTypes from '../__generated__/Login';
 
 interface LoginFormProps {
-  onLogin: () => void;
+  onLogin: (a: { variables: LoginTypes.LoginVariables }) => void;
 }
+
+type FormData = {
+  user: string;
+  password: string;
+};
 
 const LoginForm: FC<LoginFormProps> = ({ onLogin }) => {
   const {
     register,
     handleSubmit,
     formState: { isDirty, isSubmitting },
-  } = useForm({
+  } = useForm<FormData>({
     mode: 'onBlur',
   });
 
-  const onSubmit = () => {
-    onLogin();
+  const onSubmit = ({ user, password }: FormData) => {
+    onLogin({ variables: { userName: user, password } });
   };
 
   return (
