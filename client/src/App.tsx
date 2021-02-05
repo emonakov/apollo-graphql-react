@@ -16,6 +16,7 @@ import { isLoggedInVar } from './cache';
 import { materialTheme } from './config/theme';
 import * as LoginTypes from './__generated__/Login';
 import * as SignupTypes from './__generated__/Signup';
+import * as ResetTypes from './__generated__/ResetPassword';
 
 const IS_LOGGED_IN = gql`
   query IsUserLoggedIn {
@@ -43,6 +44,16 @@ export const SIGNUP_USER = gql`
   }
 `;
 
+export const RESET_USER = gql`
+  mutation ResetPassword($userName: String!, $password: String!) {
+    resetPassword(userName: $userName, password: $password) {
+      success
+      message
+      token
+    }
+  }
+`;
+
 const App: FC = () => {
   const {
     data: { isLoggedIn },
@@ -52,26 +63,33 @@ const App: FC = () => {
     LoginTypes.Login,
     LoginTypes.LoginVariables
   >(LOGIN_USER, {
-    errorPolicy: 'all',
     onCompleted({ login }) {
       if (login?.success && login?.token) {
         localStorage.setItem('token', login.token);
         isLoggedInVar(true);
       }
     },
+    errorPolicy: 'all',
   });
 
   const [signup, { error: singUpError }] = useMutation<
     SignupTypes.Signup,
     SignupTypes.SignupVariables
   >(SIGNUP_USER, {
-    errorPolicy: 'all',
     onCompleted({ signUp }) {
       if (signUp?.success && signUp?.token) {
         localStorage.setItem('token', signUp.token);
         isLoggedInVar(true);
       }
     },
+    errorPolicy: 'all',
+  });
+
+  const [resetPassword, { error: resetError }] = useMutation<
+    ResetTypes.ResetPassword,
+    ResetTypes.ResetPasswordVariables
+  >(SIGNUP_USER, {
+    errorPolicy: 'all',
   });
 
   const dispatch = useDispatch();
@@ -106,7 +124,7 @@ const App: FC = () => {
               <SignUpForm onSignUp={signup} error={singUpError} />
             </Route>
             <Route path="/reset" exact>
-              <ResetForm onReset={() => setLoggedIn(false)} />
+              <ResetForm onReset={resetPassword} error={resetError} />
             </Route>
             <Route>
               <h1>Not found</h1>

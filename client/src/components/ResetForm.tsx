@@ -2,14 +2,22 @@ import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 import Form from './shared/Form';
+import { ResetPasswordVariables } from '../__generated__/ResetPassword';
 
 interface ResetFormProps {
-  onReset: (data: any) => void;
+  onReset: (a: { variables: ResetPasswordVariables }) => void;
+  error: any;
 }
 
-const LoginForm: FC<ResetFormProps> = ({ onReset }) => {
+type FormData = {
+  user: string;
+  password: string;
+};
+
+const LoginForm: FC<ResetFormProps> = ({ onReset, error }) => {
   const {
     register,
     handleSubmit,
@@ -18,16 +26,23 @@ const LoginForm: FC<ResetFormProps> = ({ onReset }) => {
     mode: 'onBlur',
   });
 
-  const onSubmit = (data: any) => {
-    onReset(data);
+  const onSubmit = ({ user, password }: FormData) => {
+    onReset({ variables: { userName: user, password } });
   };
 
-  return isSubmitSuccessful ? (
+  return isSubmitSuccessful && !error ? (
     <h4>Password was reset, you can login now</h4>
   ) : (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <h1>Reset</h1>
-      <TextField name="new_password" inputRef={register} variant="outlined" />
+      <TextField name="user" inputRef={register} variant="outlined" />
+      <TextField
+        type="password"
+        name="password"
+        inputRef={register}
+        variant="outlined"
+      />
+      {error && <FormHelperText>Reset password failed</FormHelperText>}
       <Button disabled={!isDirty || isSubmitting} type="submit">
         Reset password
       </Button>
