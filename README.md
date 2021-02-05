@@ -5,6 +5,7 @@ Server side is built with apollo graphql
 
 ## Installation
 
+```yarn```
 ```cd client && yarn```
 ```cd server && yarn```
 
