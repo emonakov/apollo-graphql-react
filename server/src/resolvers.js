@@ -95,11 +95,12 @@ module.exports = {
         throw new AuthenticationError('Login first');
       }
 
-      const isDeleted = await dataSources.itemAPI.deleteItem({ itemId });
+      const { isDeleted, id } = await dataSources.itemAPI.deleteItem({ itemId });
 
       return {
         success: isDeleted,
         message: isDeleted ? 'item deleted' : 'something went wrong',
+        id,
       };
     },
   },

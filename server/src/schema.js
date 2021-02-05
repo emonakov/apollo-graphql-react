@@ -41,6 +41,7 @@ const typeDefs = gql`
   type ItemDeleteResponse {
     success: Boolean!
     message: String
+    id: ID!
   }
 
   type UserCreateResponse {

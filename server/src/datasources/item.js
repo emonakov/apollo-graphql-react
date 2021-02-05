@@ -35,8 +35,12 @@ class ItemAPI extends DataSource {
 
   async deleteItem({ itemId }) {
     const userId = this.context.user.id;
+    const result = await this.store.items.destroy({ where: { userId, id: itemId } });
 
-    return !!this.store.items.destroy({ where: { userId, id: itemId } });
+    return {
+      isDeleted: !!result,
+      id: itemId,
+    };
   }
 }
 
