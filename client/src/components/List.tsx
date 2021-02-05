@@ -59,9 +59,11 @@ const DELETE_ITEM = gql`
 `;
 
 const List: FC = () => {
-  const { data, loading, error } = useQuery<GetItemsTypes.GetItems>(GET_ITEMS);
+  const { data, loading, error, refetch } = useQuery<GetItemsTypes.GetItems>(
+    GET_ITEMS
+  );
   const dispatch = useDispatch();
-  const items = useSelector(selectItems);
+  const items = useSelector<any, ItemInterface[] | undefined>(selectItems);
 
   const [addItemMutation, { error: addItemError }] = useMutation<
     AddItemTypes.AddItem,
@@ -70,7 +72,12 @@ const List: FC = () => {
     onCompleted({ createItem }) {
       if (createItem?.item) {
         const newItem = (createItem.item as unknown) as ItemInterface;
-        dispatch(addItem({ items: [newItem] }));
+        if (items) {
+          const itemExists = items.find((item) => item.title === newItem.title);
+          if (!itemExists) {
+            dispatch(addItem({ items: [newItem] }));
+          }
+        }
       }
     },
     errorPolicy: 'all',
@@ -104,6 +111,12 @@ const List: FC = () => {
       dispatch(clearItems());
     };
   }, [data]);
+
+  useEffect(() => {
+    if (data) {
+      refetch();
+    }
+  }, []);
 
   return (
     <>

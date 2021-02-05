@@ -109,6 +109,7 @@ const App: FC = () => {
             loggedIn={loggedIn}
             onLogout={() => {
               localStorage.removeItem('token');
+              setLoggedIn(false);
               isLoggedInVar(false);
             }}
           />
