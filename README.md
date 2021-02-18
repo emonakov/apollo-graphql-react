@@ -14,8 +14,6 @@ Use Graphql with node.js backend and sequelize as an ORM ( https://sequelize.org
 For database, you can use sqlite (or you can chose the one you want)
 ```
 
-Never received any feedback from bannersnack, the code was never reviewed.
-
 # Getting started my first GraphQL project
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and uses apollo graphql client.<br />
