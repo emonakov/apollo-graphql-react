@@ -23,7 +23,7 @@ Server side is built with apollo graphql
 
 ```yarn```\
 ```cd client && yarn```\
-```cd server && yarn``
+```cd server && yarn```
 
 ## Available Scripts
 
