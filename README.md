@@ -21,9 +21,9 @@ Server side is built with apollo graphql
 
 ## Installation
 
-```yarn```<br />
-```cd client && yarn```<br />
-```cd server && yarn```<br />
+```yarn```\
+```cd client && yarn```\
+```cd server && yarn``
 
 ## Available Scripts
 
